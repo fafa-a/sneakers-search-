@@ -1,6 +1,7 @@
 import { createApp } from "vue"
 import App from "./App.vue"
+import "vue-global-api"
 import "virtual:windi.css"
-import 'vue-global-api'
+import "./assets/style/reset.css"
 
 createApp(App).mount("#app")
