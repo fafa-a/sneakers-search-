@@ -2,6 +2,7 @@
   <div m="y-3">
     <input
       type="text"
+      placeholder="type sku"
       border="1 solid gray rounded lg"
       bg="white opacity-90"
       w="14rem"

@@ -4,13 +4,17 @@
     extra="sneakers search engine"
     @searchSend="search"
   />
-  {{ sneaker }}
+  <div v-if="isLoading">
+    <Card :data="sneaker" />
+  </div>
 </template>
 
 <script setup>
 import TheBanner from "./components/banner/TheBanner.vue"
+import Card from "./components/Card.vue"
 
 ref: sneaker = {}
+ref: isLoading = false
 const stores = ["stockx", "goat", "flight club", "klekt"]
 
 const getResults = async (query) => {
@@ -27,6 +31,7 @@ const getResults = async (query) => {
 const search = async (key) => {
   const results = await getResults(key)
   sneaker = results
+  isLoading = true
 }
 </script>
 
