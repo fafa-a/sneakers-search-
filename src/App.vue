@@ -15,10 +15,13 @@ import Card from "./components/Card.vue"
 
 ref: sneaker = {}
 ref: isLoading = false
+ref: href = ""
+ref: dataSize = {}
 const stores = ["stockx", "goat", "flight club", "klekt"]
 
 const getResults = async (query) => {
-  const url = "https://serverless-api.fafaa.workers.dev"
+  // const url = "https://serverless-api.fafaa.workers.dev"
+  const url = "http://127.0.0.1:8787"
 
   const res = await fetch(url, {
     method: "POST",
@@ -28,10 +31,18 @@ const getResults = async (query) => {
   return res.json()
 }
 
+const getSize = async () => {
+  const url = `https://stockx.com/api/products/${href}?includes=market`
+  const res = await fetch(url, { method: "GET" })
+  return res.json()
+}
+
 const search = async (key) => {
   const results = await getResults(key)
   sneaker = results
   isLoading = true
+  href = sneaker.Products[0].urlKey
+  dataSize = await getSize()
 }
 </script>
 
